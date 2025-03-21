@@ -40,15 +40,30 @@ namespace Apbd_miniProject01
                 {
                     Console.WriteLine("Info: you can see bellow the list of available containers" +
                                       "\nType its number to load a container onto a ship" +
-                                      "\nTo load list of containers type their numbers spaceseparated in format <1 2 3 4>");
+                                      "\nTo load list of containers type their numbers spaceseparated in format <1 2 3 4>" +
+                                      "\nYou cannot put twice the same container to the ship");
                     showAccessibleContainers();
-                    int choice = int.Parse(Console.ReadLine());
-                    if (accessibleContainers.ContainsKey(choice)){
-                    containers.Add(counter1++, accessibleContainers[choice]);
+                    String line = Console.ReadLine();
+                    String[] splitted = line.Split(' ');
+                    if (splitted.Length <= accessibleContainers.Count)
+                    {
+                        foreach (var word in splitted)
+                        {
+                            int choice = int.Parse(word);
+                            if (accessibleContainers.ContainsKey(choice))
+                            {
+                                containers.Add(counter1++, accessibleContainers[choice]);
+                                accessibleContainers.Remove(choice);
+                            }
+                            else
+                            {
+                                Console.WriteLine("Error: no accessible container found");
+                            }
+                        }
                     }
                     else
                     {
-                        Console.WriteLine("Error: no accessible container found");
+                        Console.WriteLine("Wrong number of accessible containers!");
                     }
                 }
 
@@ -102,6 +117,32 @@ namespace Apbd_miniProject01
                         break;
                 }
 
+        }
+
+        public void removeContainer()
+        {
+            Console.WriteLine("To remove container from cargo, type its number");
+            showContainers();
+            int choice = int.Parse(Console.ReadLine());
+            if (containers.ContainsKey(choice))
+            {   
+                Console.WriteLine("Proccesing with deleting the container:" + containers[choice] +
+                                    "\nDo you want to move it to accessible containers?" +
+                                    "\nFor yes type 1 for no 0");
+                int choice1 = int.Parse(Console.ReadLine());
+                if (choice1 == 1)
+                {
+                    accessibleContainers.Add(counter0++, containers[choice]);
+                }
+                containers.Remove(choice);
+                Console.WriteLine("The container has been removed");
+            }
+            else
+            {
+                Console.WriteLine("No such container");
+            }
+
+            
         }
 
         public void showAccessibleContainers()
