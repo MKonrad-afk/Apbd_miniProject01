@@ -4,10 +4,9 @@ namespace Apbd_miniProject01
 {
     public class SerialNumber
     {
-
-        public string FirstPart { get; }
-        public char SecondPart { get;}
-        public int ThirdPart { get; }
+        private string FirstPart;
+        private char SecondPart;
+        private int ThirdPart;
 
         public SerialNumber()
         {
@@ -15,6 +14,11 @@ namespace Apbd_miniProject01
             var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
             SecondPart = chars[new Random().Next(chars.Length)];
             ThirdPart = new Random().Next(0, 9);
+        }
+
+        public string getSerialNumber()
+        {
+            return FirstPart +"-" + SecondPart+"-" + ThirdPart;
         }
             
     }
