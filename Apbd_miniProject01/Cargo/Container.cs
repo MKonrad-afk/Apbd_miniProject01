@@ -29,6 +29,7 @@ namespace Apbd_miniProject01
             DepthCm = depthCm;
             MaxPayloadKg = maxPayloadKg;
             SerialNumber = SerialNumberRegister.generateSerialNUmber();
+            Console.WriteLine($"You have loaded -> Serial Number: {SerialNumber}");
         }
         // Emptying the cargo
         public void emptyCargo()
@@ -58,6 +59,11 @@ namespace Apbd_miniProject01
 
             CargoWeightItself += massKg;
             MassKg += massKg;
+        }
+
+        public override string ToString()
+        {
+            return "> " + SerialNumber.getSerialNumber();
         }
     }
 

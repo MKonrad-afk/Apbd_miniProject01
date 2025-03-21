@@ -37,5 +37,10 @@ namespace Apbd_miniProject01
         {
             Console.WriteLine($"Hazardous event reported! Container Serial Number: {SerialNumber}");
         }
+        
+        public override string ToString()
+        {
+            return base.ToString() +$", CargoType: {CargoType} - Liquid Container";
+        }
     }
 }
