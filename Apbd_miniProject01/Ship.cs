@@ -28,7 +28,7 @@ namespace Apbd_miniProject01
             MaxWeight = maxWeight;
         }
 
-        public void addContainer()
+        public void addContainerToShip()
         {
             if (MaxContainersCapacity < containers.Count)
             {
@@ -75,48 +75,69 @@ namespace Apbd_miniProject01
             }
             
         }
-        
-        public void loadCargoINtoContainer(ContainerType containerType)
+
+        public void createContainers(ContainerType containerType)
         {
-                Console.WriteLine("To Load container give me following:" +
-                                  "\n Height of the container in cm:");
-                double height = double.Parse(Console.ReadLine());
-                Console.WriteLine("Depth of the container in cm:");
-                double depth = double.Parse(Console.ReadLine());
-                Console.WriteLine("Tare Weight of the container in kg:");
-                double tareWeight = double.Parse(Console.ReadLine());
-                Console.WriteLine("Weight of the cargo itself in kg:");
-                double cargoWeight = double.Parse(Console.ReadLine());
-                Console.WriteLine("Max payload of the container in kg:");
-                double maxPayload = double.Parse(Console.ReadLine());
+            Console.WriteLine("To Load container give me following:" +
+                              "\n Height of the container in cm:");
+            double height = double.Parse(Console.ReadLine());
+            Console.WriteLine("Depth of the container in cm:");
+            double depth = double.Parse(Console.ReadLine());
+            Console.WriteLine("Tare Weight of the container in kg:");
+            double tareWeight = double.Parse(Console.ReadLine());
+            Console.WriteLine("Weight of the cargo itself in kg:");
+            double cargoWeight = double.Parse(Console.ReadLine());
+            Console.WriteLine("Max payload of the container in kg:");
+            double maxPayload = double.Parse(Console.ReadLine());
+            
+            switch (containerType)
+            {
+                case ContainerType.R:
+                    accessibleContainers.Add(counter0 + 1,new Refrigerated_Container(height, tareWeight, depth, maxPayload));
+                    break;
+                case ContainerType.G:
+                    Console.WriteLine("Pressure in atmosphere:");
+                    double pressure = double.Parse(Console.ReadLine());
+                    accessibleContainers.Add(counter0 + 1, new Gas_Containers(height, tareWeight, depth, maxPayload,
+                        pressure));
+                    break;
 
-                switch (containerType)
-                {
-                    case ContainerType.R:
-                        Console.WriteLine("Provide me with product type:\n" +
-                                          "Name: (e.g Bananas)");
-                        String nameOfProduct = Console.ReadLine();
-                        Console.WriteLine("Lowest temperature of this product Type");
-                        int lowestTemperature = int.Parse(Console.ReadLine());
-                        ProductType productType = new ProductType(nameOfProduct, lowestTemperature);
-                        accessibleContainers.Add(counter0 + 1,new Refrigerated_Container(height, tareWeight, cargoWeight, depth, maxPayload,
-                            productType));
-                        break;
-                    case ContainerType.G:
-                        Console.WriteLine("Pressure in atmosphere:");
-                        double pressure = double.Parse(Console.ReadLine());
-                        accessibleContainers.Add(counter0 + 1, new Gas_Containers(height, tareWeight, cargoWeight, depth, maxPayload,
-                            pressure));
-                        break;
+                case ContainerType.L:
+                    Console.WriteLine("Product type of the container (choose between 0: hazardous, 1: ordinary):");
+                    CargoType cargoType = (CargoType)int.Parse(Console.ReadLine());
+                    accessibleContainers.Add(counter0 + 1, new Liquid_Conteiners(height, tareWeight, depth, maxPayload,
+                        cargoType));
+                    break;
+            }
+        }
+        public void loadCargoINtoContainer()
+        {   
+            Console.WriteLine("To load cargo into a container type its number");
+            showAccessibleContainers();
+            int choice = int.Parse(Console.ReadLine());
+            if (accessibleContainers.ContainsKey(choice))
+            {   
+                Console.WriteLine("Provide me with the weight of the cargo in Kg");
+                double weight = double.Parse(Console.ReadLine());
+                accessibleContainers[choice].loadCargo(weight);
+            }
+            else
+            {
+                Console.WriteLine("Error: no accessible container found");
+            }
+              
 
-                    case ContainerType.L:
-                        Console.WriteLine("Product type of the container (choose between 0: hazardous, 1: ordinary):");
-                        CargoType cargoType = (CargoType)int.Parse(Console.ReadLine());
-                        accessibleContainers.Add(counter0 + 1, new Liquid_Conteiners(height, tareWeight, cargoWeight, depth, maxPayload,
-                            cargoType));
-                        break;
-                }
+        }
 
+        public void unloadContainer()
+        {
+            Console.WriteLine("Info: you can unload container from the ship by typing its number from the list bellow");
+            showAccessibleContainers();
+            int choice = int.Parse(Console.ReadLine());
+            if (accessibleContainers.ContainsKey(choice))
+            {
+                accessibleContainers[choice].emptyCargo();
+            }
         }
 
         public void removeContainer()

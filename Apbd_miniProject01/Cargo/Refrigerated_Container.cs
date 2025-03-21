@@ -1,3 +1,5 @@
+using System;
+
 namespace Apbd_miniProject01
 {
     
@@ -7,16 +9,27 @@ namespace Apbd_miniProject01
         public ProductType ProductTy;
         public int CargoTemperature;
 
-        public Refrigerated_Container(double heightCm, double tareWeightKg, double cargoWeightItself, double depthCm, double maxPayloadKg, ProductType productType) : base(heightCm, tareWeightKg, cargoWeightItself, depthCm, maxPayloadKg)
+        public Refrigerated_Container(double heightCm, double tareWeightKg, double depthCm, double maxPayloadKg) : base(heightCm, tareWeightKg, depthCm, maxPayloadKg)
         {
-            ProductTy = productType;
-            CargoTemperature = productType.LowestTemperature;
         }
-        
+
         public override string ToString()
         {
             return base.ToString() +$", Product Type: {ProductTy}, LowestTemperature {CargoTemperature} - Liquid Container"; 
         }
+        public override void loadCargo(double massKg)
+        {
+            base.loadCargo(massKg);
+            Console.WriteLine("Provide me with product type:\n" +
+                              "Name: (e.g Bananas)");
+            String nameOfProduct = Console.ReadLine();
+            Console.WriteLine("Lowest temperature of this product Type");
+            int lowestTemperature = int.Parse(Console.ReadLine());
+            ProductType productType = new ProductType(nameOfProduct, lowestTemperature);
+            ProductTy = productType;
+        }
+        
+        
     }
 
 }

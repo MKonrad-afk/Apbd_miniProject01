@@ -20,19 +20,18 @@ namespace Apbd_miniProject01
 
         public SerialNumber SerialNumber { get; }
         
-        public Container(double heightCm, double tareWeightKg, double cargoWeightItself, double depthCm, double maxPayloadKg)
+        public Container(double heightCm, double tareWeightKg,double depthCm, double maxPayloadKg)
         {
-            MassKg = cargoWeightItself + tareWeightKg;
+            MassKg = tareWeightKg;
             HeightCm = heightCm;
             TareWeightKg = tareWeightKg;
-            CargoWeightItself = cargoWeightItself;
             DepthCm = depthCm;
             MaxPayloadKg = maxPayloadKg;
             SerialNumber = SerialNumberRegister.generateSerialNUmber();
             Console.WriteLine($"You have loaded -> Serial Number: {SerialNumber}");
         }
         // Emptying the cargo
-        public void emptyCargo()
+        public virtual void emptyCargo()
         {
             if (CargoWeightItself.Equals(0))
             {
@@ -45,7 +44,7 @@ namespace Apbd_miniProject01
             }
         }
         // if the mass of the cargo is greater than the capacity of a given container, we should throw an OverfillException error
-        public void loadCargo(int massKg)
+        public virtual void loadCargo(double massKg)
         {
             if (!CargoWeightItself.Equals(0))
             {

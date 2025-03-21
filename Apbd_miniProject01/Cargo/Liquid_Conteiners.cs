@@ -7,8 +7,8 @@ namespace Apbd_miniProject01
     {
         CargoType CargoType {get;set; }
 
-        public Liquid_Conteiners(double heightCm, double tareWeightKg, double cargoWeightItself, double depthCm, double maxPayloadKg, CargoType cargoType) 
-            : base(heightCm, tareWeightKg, cargoWeightItself, depthCm, maxPayloadKg)
+        public Liquid_Conteiners(double heightCm, double tareWeightKg, double depthCm, double maxPayloadKg, CargoType cargoType) 
+            : base(heightCm, tareWeightKg, depthCm, maxPayloadKg)
         {
             CargoType = cargoType;
             if (CargoType == CargoType.hazardous)

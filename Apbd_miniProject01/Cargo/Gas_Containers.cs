@@ -6,13 +6,13 @@ namespace Apbd_miniProject01
     {
         public double Pressure { get; private set; }
 
-        public Gas_Containers( double heightCm, double tareWeightKg, double cargoWeightItself, double depthCm, double maxPayloadKg, double pressure) 
-            : base(heightCm, tareWeightKg, cargoWeightItself, depthCm, maxPayloadKg)
+        public Gas_Containers( double heightCm, double tareWeightKg, double depthCm, double maxPayloadKg, double pressure) 
+            : base(heightCm, tareWeightKg, depthCm, maxPayloadKg)
         {
             Pressure = pressure;
         }
 
-        public void emptyCargo()
+        public override void emptyCargo()
         {
             if (CargoWeightItself.Equals(0))
             {
