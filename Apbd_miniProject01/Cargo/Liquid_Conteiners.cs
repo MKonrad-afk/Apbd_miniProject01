@@ -7,10 +7,9 @@ namespace Apbd_miniProject01
     {
         CargoType CargoType {get;set; }
 
-        public Liquid_Conteiners(double heightCm, double tareWeightKg, double depthCm, double maxPayloadKg, CargoType cargoType) 
+        public Liquid_Conteiners(double heightCm, double tareWeightKg, double depthCm, double maxPayloadKg) 
             : base(heightCm, tareWeightKg, depthCm, maxPayloadKg)
         {
-            CargoType = cargoType;
             if (CargoType == CargoType.hazardous)
             {
                 MaxPayloadKg = maxPayloadKg / 2;
@@ -20,6 +19,15 @@ namespace Apbd_miniProject01
             {
                 MaxPayloadKg = maxPayloadKg * 0.9;
             }
+        }
+
+        public override void loadCargo(double massKg)
+        {
+            base.loadCargo(massKg);
+            violationOfCargoPayload();
+            Console.WriteLine("Product type of the container (choose between 0: hazardous, 1: ordinary):");
+            CargoType = (CargoType)int.Parse(Console.ReadLine());
+
         }
 
         public void violationOfCargoPayload() 

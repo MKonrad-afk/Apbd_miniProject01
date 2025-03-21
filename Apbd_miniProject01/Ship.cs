@@ -96,17 +96,11 @@ namespace Apbd_miniProject01
                     accessibleContainers.Add(counter0 + 1,new Refrigerated_Container(height, tareWeight, depth, maxPayload));
                     break;
                 case ContainerType.G:
-                    Console.WriteLine("Pressure in atmosphere:");
-                    double pressure = double.Parse(Console.ReadLine());
-                    accessibleContainers.Add(counter0 + 1, new Gas_Containers(height, tareWeight, depth, maxPayload,
-                        pressure));
+                    accessibleContainers.Add(counter0 + 1, new Gas_Containers(height, tareWeight, depth, maxPayload));
                     break;
 
                 case ContainerType.L:
-                    Console.WriteLine("Product type of the container (choose between 0: hazardous, 1: ordinary):");
-                    CargoType cargoType = (CargoType)int.Parse(Console.ReadLine());
-                    accessibleContainers.Add(counter0 + 1, new Liquid_Conteiners(height, tareWeight, depth, maxPayload,
-                        cargoType));
+                    accessibleContainers.Add(counter0 + 1, new Liquid_Conteiners(height, tareWeight, depth, maxPayload));
                     break;
             }
         }

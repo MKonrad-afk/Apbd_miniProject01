@@ -6,10 +6,9 @@ namespace Apbd_miniProject01
     {
         public double Pressure { get; private set; }
 
-        public Gas_Containers( double heightCm, double tareWeightKg, double depthCm, double maxPayloadKg, double pressure) 
+        public Gas_Containers( double heightCm, double tareWeightKg, double depthCm, double maxPayloadKg ) 
             : base(heightCm, tareWeightKg, depthCm, maxPayloadKg)
         {
-            Pressure = pressure;
         }
 
         public override void emptyCargo()
@@ -34,6 +33,13 @@ namespace Apbd_miniProject01
             }
 
             
+        }
+
+        public override void loadCargo(double massKg)
+        {
+            base.loadCargo(massKg);
+            Console.WriteLine("Pressure in atmosphere:");
+            Pressure = double.Parse(Console.ReadLine());
         }
 
         public void NotifyHazard()

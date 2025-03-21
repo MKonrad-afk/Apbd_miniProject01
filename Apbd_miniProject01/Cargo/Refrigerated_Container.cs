@@ -25,8 +25,7 @@ namespace Apbd_miniProject01
             String nameOfProduct = Console.ReadLine();
             Console.WriteLine("Lowest temperature of this product Type");
             int lowestTemperature = int.Parse(Console.ReadLine());
-            ProductType productType = new ProductType(nameOfProduct, lowestTemperature);
-            ProductTy = productType;
+            ProductTy = new ProductType(nameOfProduct, lowestTemperature);
         }
         
         
