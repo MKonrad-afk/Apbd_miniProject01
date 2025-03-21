@@ -14,9 +14,9 @@ namespace Apbd_miniProject01
     public class Ship
     {
         Dictionary<int, Container> containers = new Dictionary<int, Container>();
-        Dictionary<int, Container> accessibleContainers = new Dictionary<int, Container>();
-        private int counter0 = 0;
-        private int counter1 = 0;
+        Dictionary<int, Container> accessibleContainers = Service.getAccessibleContainers();
+        private static int counter0 = Service.getCounter();
+        private static int counter1 = 0;
         public double MaxSpeed { get; set; }
         public int MaxContainersCapacity { get; private set; }
         public decimal MaxWeight { get; private set; }
@@ -85,8 +85,6 @@ namespace Apbd_miniProject01
             double depth = double.Parse(Console.ReadLine());
             Console.WriteLine("Tare Weight of the container in kg:");
             double tareWeight = double.Parse(Console.ReadLine());
-            Console.WriteLine("Weight of the cargo itself in kg:");
-            double cargoWeight = double.Parse(Console.ReadLine());
             Console.WriteLine("Max payload of the container in kg:");
             double maxPayload = double.Parse(Console.ReadLine());
             
@@ -98,7 +96,6 @@ namespace Apbd_miniProject01
                 case ContainerType.G:
                     accessibleContainers.Add(counter0 + 1, new Gas_Containers(height, tareWeight, depth, maxPayload));
                     break;
-
                 case ContainerType.L:
                     accessibleContainers.Add(counter0 + 1, new Liquid_Conteiners(height, tareWeight, depth, maxPayload));
                     break;
@@ -125,18 +122,22 @@ namespace Apbd_miniProject01
 
         public void unloadContainer()
         {
-            Console.WriteLine("Info: you can unload container from the ship by typing its number from the list bellow");
+            Console.WriteLine("Info: you can unload container by typing its number from the list bellow");
             showAccessibleContainers();
             int choice = int.Parse(Console.ReadLine());
             if (accessibleContainers.ContainsKey(choice))
             {
                 accessibleContainers[choice].emptyCargo();
             }
+            else
+            {
+                Console.WriteLine("Error: no accessible container found");
+            }
         }
 
         public void removeContainer()
         {
-            Console.WriteLine("To remove container from cargo, type its number");
+            Console.WriteLine("To remove container from the ship, type its number");
             showContainers();
             int choice = int.Parse(Console.ReadLine());
             if (containers.ContainsKey(choice))
@@ -166,6 +167,29 @@ namespace Apbd_miniProject01
             {
                 Console.WriteLine(container.Key + ": " + container.Value);
             }
+        }
+
+        public void replaceContainers()
+        {
+            Console.WriteLine("Info: First you will see containers on the ship" +
+                              "\nType its number from the list bellow to choose it to replace with one from available container");
+            showContainers();
+            int choice0 = int.Parse(Console.ReadLine());
+            if (!containers.ContainsKey(choice0))
+            {
+                Console.WriteLine("No such container, try again");
+                replaceContainers();
+            }
+            Console.WriteLine("Info: NOw you will see the available containers." +
+                              "\nTo choose one type its number");
+            showAccessibleContainers();
+            int choice1 = int.Parse(Console.ReadLine());
+            if (!accessibleContainers.ContainsKey(choice1))
+            {
+                Console.WriteLine("No such container, try again");
+                replaceContainers();
+            }
+            (accessibleContainers[choice1], containers[choice0]) = (containers[choice0], accessibleContainers[choice1]);
         }
 
         public void showContainers()
