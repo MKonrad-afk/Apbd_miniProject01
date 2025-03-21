@@ -116,54 +116,63 @@
         <Compile Include="App_Start\BundleConfig.cs"/>
         <Compile Include="App_Start\FilterConfig.cs"/>
         <Compile Include="App_Start\RouteConfig.cs"/>
-        <Compile Include="Container.cs" />
-        <Compile Include="Controllers\HomeController.cs"/>
+        <Compile Include="Cargo\CargoType.cs" />
+        <Compile Include="Cargo\Container.cs" />
+        <Compile Include="Cargo\Gas_Containers.cs" />
+        <Compile Include="Cargo\IHazardNotifier.cs" />
+        <Compile Include="Cargo\Liquid_Conteiners.cs" />
+        <Compile Include="Cargo\OverfillException.cs" />
+        <Compile Include="Cargo\ProductType.cs" />
+        <Compile Include="Cargo\Refrigerated_Container.cs" />
+        <Compile Include="Cargo\SerialNumber.cs" />
+        <Compile Include="Cargo\SerialNumberRegister.cs" />
+        <Compile Include="Controllers\HomeController.cs" />
         <Compile Include="Global.asax.cs">
             <DependentUpon>Global.asax</DependentUpon>
         </Compile>
-        <Compile Include="Properties\AssemblyInfo.cs"/>
-        <Compile Include="SerialNumber.cs" />
-        <Compile Include="SerialNumberRegister.cs" />
+        <Compile Include="Main.cs" />
+        <Compile Include="Properties\AssemblyInfo.cs" />
+        <Compile Include="Ship.cs" />
     </ItemGroup>
     <ItemGroup>
-        <Content Include="Content\bootstrap-theme.css"/>
-        <Content Include="Content\bootstrap-theme.min.css"/>
-        <Content Include="Content\bootstrap.css"/>
-        <Content Include="Content\bootstrap.min.css"/>
-        <Content Include="favicon.ico"/>
-        <Content Include="fonts\glyphicons-halflings-regular.svg"/>
-        <Content Include="Global.asax"/>
-        <Content Include="Content\Site.css"/>
-        <Content Include="Scripts\bootstrap.js"/>
-        <Content Include="Scripts\bootstrap.min.js"/>
-        <None Include="Scripts\jquery-3.3.1.intellisense.js"/>
-        <Content Include="Scripts\jquery-3.3.1.js"/>
-        <Content Include="Scripts\jquery-3.3.1.min.js"/>
-        <Content Include="Scripts\jquery-3.3.1.slim.js"/>
-        <Content Include="Scripts\jquery-3.3.1.slim.min.js"/>
-        <None Include="Scripts\jquery.validate-vsdoc.js"/>
-        <Content Include="Scripts\jquery.validate.js"/>
-        <Content Include="Scripts\jquery.validate.min.js"/>
-        <Content Include="Scripts\jquery.validate.unobtrusive.js"/>
-        <Content Include="Scripts\jquery.validate.unobtrusive.min.js"/>
-        <Content Include="Scripts\modernizr-2.8.3.js"/>
-        <Content Include="Web.config"/>
+        <Content Include="Content\bootstrap-theme.css" />
+        <Content Include="Content\bootstrap-theme.min.css" />
+        <Content Include="Content\bootstrap.css" />
+        <Content Include="Content\bootstrap.min.css" />
+        <Content Include="favicon.ico" />
+        <Content Include="fonts\glyphicons-halflings-regular.svg" />
+        <Content Include="Global.asax" />
+        <Content Include="Content\Site.css" />
+        <Content Include="Scripts\bootstrap.js" />
+        <Content Include="Scripts\bootstrap.min.js" />
+        <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+        <Content Include="Scripts\jquery-3.3.1.js" />
+        <Content Include="Scripts\jquery-3.3.1.min.js" />
+        <Content Include="Scripts\jquery-3.3.1.slim.js" />
+        <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
+        <None Include="Scripts\jquery.validate-vsdoc.js" />
+        <Content Include="Scripts\jquery.validate.js" />
+        <Content Include="Scripts\jquery.validate.min.js" />
+        <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+        <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+        <Content Include="Scripts\modernizr-2.8.3.js" />
+        <Content Include="Web.config" />
         <Content Include="Web.Debug.config">
             <DependentUpon>Web.config</DependentUpon>
         </Content>
         <Content Include="Web.Release.config">
             <DependentUpon>Web.config</DependentUpon>
         </Content>
-        <Content Include="Views\Web.config"/>
-        <Content Include="Views\_ViewStart.cshtml"/>
-        <Content Include="Views\Shared\Error.cshtml"/>
-        <Content Include="Views\Shared\_Layout.cshtml"/>
-        <Content Include="Views\Home\About.cshtml"/>
-        <Content Include="Views\Home\Contact.cshtml"/>
-        <Content Include="Views\Home\Index.cshtml"/>
+        <Content Include="Views\Web.config" />
+        <Content Include="Views\_ViewStart.cshtml" />
+        <Content Include="Views\Shared\Error.cshtml" />
+        <Content Include="Views\Shared\_Layout.cshtml" />
+        <Content Include="Views\Home\About.cshtml" />
+        <Content Include="Views\Home\Contact.cshtml" />
+        <Content Include="Views\Home\Index.cshtml" />
     </ItemGroup>
     <ItemGroup>
-        <Folder Include="App_Data"/>
+        <Folder Include="App_Data" />
         <Folder Include="Models"/>
     </ItemGroup>
     <ItemGroup>

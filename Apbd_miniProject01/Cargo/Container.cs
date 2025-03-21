@@ -6,23 +6,23 @@ namespace Apbd_miniProject01
     public class Container
     {
         //sum of the weight
-        public int MassKg { get; private set; }
+        public double MassKg { get;  set; }
         //cargo weight
-        public int CargoWeightItself { get; private set; }
+        public double CargoWeightItself { get;  set; }
         //container weight
-        public int TareWeightKg { get; private set; }
+        public double TareWeightKg { get;  set; }
         //how much we can load
-        public int MaxPayloadKg { get; private set; }
+        public double MaxPayloadKg { get;  set; }
         
-        public int HeightCm { get; private set; }
+        public double HeightCm { get; set; }
 
-        public int DepthCm { get; private set; }
+        public double DepthCm { get; set; }
 
         public SerialNumber SerialNumber { get; }
         
-        public Container(int massKg, int heightCm, int tareWeightKg, int cargoWeightItself, int depthCm, int maxPayloadKg)
+        public Container(double heightCm, double tareWeightKg, double cargoWeightItself, double depthCm, double maxPayloadKg)
         {
-            MassKg = massKg;
+            MassKg = cargoWeightItself + tareWeightKg;
             HeightCm = heightCm;
             TareWeightKg = tareWeightKg;
             CargoWeightItself = cargoWeightItself;
@@ -51,7 +51,7 @@ namespace Apbd_miniProject01
                 Console.WriteLine("Cargo is not empty!");
                 return;
             }
-            if (CargoWeightItself + massKg > MaxPayloadKg)
+            if (massKg > MaxPayloadKg)
             {
                 throw new OverfillException();
             }
@@ -61,11 +61,4 @@ namespace Apbd_miniProject01
         }
     }
 
-    public class OverfillException : Exception
-    {
-        public OverfillException()
-        : base("OverfillException")
-        {
-        }
-    }
 }
