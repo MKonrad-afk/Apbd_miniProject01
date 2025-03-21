@@ -17,6 +17,8 @@ namespace Apbd_miniProject01
         Dictionary<int, Container> accessibleContainers = Service.getAccessibleContainers();
         private static int counter0 = Service.getCounter();
         private static int counter1 = 0;
+
+        private string name;
         public double MaxSpeed { get; set; }
         public int MaxContainersCapacity { get; private set; }
         public decimal MaxWeight { get; private set; }
@@ -200,6 +202,12 @@ namespace Apbd_miniProject01
             }
         }
 
+        public void showMe()
+        {
+            Console.WriteLine(name + ", " + MaxSpeed + ", " + MaxContainersCapacity + ", " + MaxWeight + "\n");
+            showContainers();
+            Console.WriteLine("--------------------------------------------");
+        }
     }
     
 }

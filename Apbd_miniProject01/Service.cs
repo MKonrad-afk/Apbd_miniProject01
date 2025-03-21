@@ -6,7 +6,8 @@ namespace Apbd_miniProject01
     {
         private static Dictionary<int, Container> accessibleContainers = new Dictionary<int, Container>();
         private static int counter = 0;
-        static List<Ship> ships = new List<Ship>();
+        private static int counter2 = 0;
+        static Dictionary<int, Ship> ships = new  Dictionary<int, Ship>();
 
         public static Dictionary<int, Container> getAccessibleContainers()
         {
@@ -18,14 +19,14 @@ namespace Apbd_miniProject01
             return counter;
         }
 
-        public static List<Ship> getShips()
+        public static Dictionary<int, Ship> getShips()
         {
             return ships;
         }
 
         public static void addShip(Ship ship)
         {
-            ships.Add(ship);
+            ships.Add(counter2++, ship);
         }
 
     }
